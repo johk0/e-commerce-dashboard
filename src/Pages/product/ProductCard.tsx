@@ -4,13 +4,22 @@ import { IProduct } from "../../data/interface";
 import { textSlice } from "../../utilts/functions";
 import { formatNumbers } from "../../utilts/functions";
 import CirclesColor from "../ui/CirclesColor";
+import DeleteModal from "../ui/DeleteModal";
+import { useContext } from "react";
+import ProductsContext from "../../data/ProductsContext";
 interface IProps {
 	product: IProduct;
 	setProductToEdit: (product: IProduct) => void;
 	isOpenEdit: () => void;
+	deleteProduct?: (product: IProduct) => void;
 }
 
-const ProductCard = ({ product, setProductToEdit, isOpenEdit }: IProps) => {
+const ProductCard = ({
+	product,
+	setProductToEdit,
+	isOpenEdit,
+	deleteProduct,
+}: IProps) => {
 	//
 	// images
 	const { title, description, imageUrl, category, colors, price } = product;
@@ -23,7 +32,7 @@ const ProductCard = ({ product, setProductToEdit, isOpenEdit }: IProps) => {
 				key={index + " - " + color}
 				color={color}
 				onClick={() => {
-					console.log("hi");
+					// console.log("hi");
 				}}
 			/>
 		);
@@ -34,6 +43,12 @@ const ProductCard = ({ product, setProductToEdit, isOpenEdit }: IProps) => {
 	const onEdit = () => {
 		setProductToEdit(product);
 		isOpenEdit();
+	};
+
+	const handleProductDelete = (e: IProduct) => {
+		if (deleteProduct) {
+			deleteProduct(e);
+		}
 	};
 
 	return (
@@ -64,12 +79,18 @@ const ProductCard = ({ product, setProductToEdit, isOpenEdit }: IProps) => {
 					<Button
 						className="bg-indigo-700"
 						onClick={() => {
-							console.log("Edit");
+							// console.log("Edit");
 							onEdit();
 						}}>
 						Edit
 					</Button>
-					<Button className="bg-red-700">Delete</Button>
+					<Button
+						className="bg-red-700"
+						onClick={(e) => {
+							handleProductDelete(product);
+						}}>
+						Delete
+					</Button>
 				</div>
 			</div>
 		</>

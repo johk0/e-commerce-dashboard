@@ -27,6 +27,7 @@ import ErrorMsg from "./ErrorMsg";
 import CirclesColor from "./CirclesColor";
 import SelectMenu from "./SelectMenu";
 import ProductsContext from "../../data/ProductsContext";
+import toast from "react-hot-toast";
 
 interface Iprops {
 	title?: string;
@@ -196,6 +197,7 @@ export default function MyModal({
 		// console.log(product);
 
 		close();
+		toast.success("Product added successfully");
 	};
 	// ____________ Handle Submit ____________
 

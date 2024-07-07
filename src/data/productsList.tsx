@@ -13,9 +13,9 @@ export const products: IProduct[] = [
 		colors: ["#FF0032", "#2536eb", "#FF6E31"],
 		category: {
 			id: uuid(),
-			name: "Electronics",
+			name: "Sport",
 			imageUrl:
-				"https://img.freepik.com/premium-vector/computer-pc-icon-logo-design_775854-1632.jpg",
+				"https://as2.ftcdn.net/v2/jpg/04/08/39/51/1000_F_408395110_z0BJFhaW5HndCmreQcdITQopWwUyvC2k.jpg",
 		},
 	},
 	{
@@ -29,9 +29,9 @@ export const products: IProduct[] = [
 		colors: ["#00FF00", "#0000FF"],
 		category: {
 			id: uuid(),
-			name: "Electronics",
+			name: "Sport",
 			imageUrl:
-				"https://img.freepik.com/premium-vector/computer-pc-icon-logo-design_775854-1632.jpg",
+				"https://as2.ftcdn.net/v2/jpg/04/08/39/51/1000_F_408395110_z0BJFhaW5HndCmreQcdITQopWwUyvC2k.jpg",
 		},
 	},
 	{
@@ -45,9 +45,9 @@ export const products: IProduct[] = [
 		colors: ["#FF0000", "#000000"],
 		category: {
 			id: uuid(),
-			name: "Clothes",
+			name: "Sport",
 			imageUrl:
-				"https://static.vecteezy.com/system/resources/previews/023/160/394/non_2x/clothing-logo-design-women-boutique-logo-vector.jpg",
+				"https://as2.ftcdn.net/v2/jpg/04/08/39/51/1000_F_408395110_z0BJFhaW5HndCmreQcdITQopWwUyvC2k.jpg",
 		},
 	},
 	{
@@ -61,9 +61,9 @@ export const products: IProduct[] = [
 		colors: ["#0000FF", "#FFFFFF"],
 		category: {
 			id: uuid(),
-			name: "Electronics",
+			name: "Sport",
 			imageUrl:
-				"https://img.freepik.com/premium-vector/computer-pc-icon-logo-design_775854-1632.jpg",
+				"https://as2.ftcdn.net/v2/jpg/04/08/39/51/1000_F_408395110_z0BJFhaW5HndCmreQcdITQopWwUyvC2k.jpg",
 		},
 	},
 	{
@@ -76,9 +76,9 @@ export const products: IProduct[] = [
 		colors: ["#0000FF", "#FFFFFF"],
 		category: {
 			id: uuid(),
-			name: "Electronics",
+			name: "Sport",
 			imageUrl:
-				"https://img.freepik.com/premium-vector/computer-pc-icon-logo-design_775854-1632.jpg",
+				"https://as2.ftcdn.net/v2/jpg/04/08/39/51/1000_F_408395110_z0BJFhaW5HndCmreQcdITQopWwUyvC2k.jpg",
 		},
 	},
 	{
@@ -92,9 +92,9 @@ export const products: IProduct[] = [
 		colors: ["#FFFF00", "#000000"],
 		category: {
 			id: uuid(),
-			name: "T-Shirt",
+			name: "Sport",
 			imageUrl:
-				"https://static.vecteezy.com/system/resources/previews/024/528/178/original/t-shirt-icon-isolated-on-white-background-for-your-web-and-mobile-app-design-t-shirt-logo-concept-can-be-used-as-a-logo-design-or-a-coloring-page-vector.jpg",
+				"https://as2.ftcdn.net/v2/jpg/04/08/39/51/1000_F_408395110_z0BJFhaW5HndCmreQcdITQopWwUyvC2k.jpg",
 		},
 	},
 	{
@@ -108,9 +108,9 @@ export const products: IProduct[] = [
 		colors: ["#008000", "#D3D3D3"],
 		category: {
 			id: uuid(),
-			name: "T-Shirt",
+			name: "Sport",
 			imageUrl:
-				"https://static.vecteezy.com/system/resources/previews/024/528/178/original/t-shirt-icon-isolated-on-white-background-for-your-web-and-mobile-app-design-t-shirt-logo-concept-can-be-used-as-a-logo-design-or-a-coloring-page-vector.jpg",
+				"https://as2.ftcdn.net/v2/jpg/04/08/39/51/1000_F_408395110_z0BJFhaW5HndCmreQcdITQopWwUyvC2k.jpg",
 		},
 	},
 	{
@@ -124,9 +124,9 @@ export const products: IProduct[] = [
 		colors: ["#4169E1", "#808080"],
 		category: {
 			id: uuid(),
-			name: "Clothes",
+			name: "Sport",
 			imageUrl:
-				"https://static.vecteezy.com/system/resources/previews/023/160/394/non_2x/clothing-logo-design-women-boutique-logo-vector.jpg",
+				"https://as2.ftcdn.net/v2/jpg/04/08/39/51/1000_F_408395110_z0BJFhaW5HndCmreQcdITQopWwUyvC2k.jpg",
 		},
 	},
 	{
@@ -140,9 +140,9 @@ export const products: IProduct[] = [
 		colors: ["#C0C0C0", "#000000"],
 		category: {
 			id: uuid(),
-			name: "Clothes",
+			name: "Sport",
 			imageUrl:
-				"https://static.vecteezy.com/system/resources/previews/023/160/394/non_2x/clothing-logo-design-women-boutique-logo-vector.jpg",
+				"https://as2.ftcdn.net/v2/jpg/04/08/39/51/1000_F_408395110_z0BJFhaW5HndCmreQcdITQopWwUyvC2k.jpg",
 		},
 	},
 ];
