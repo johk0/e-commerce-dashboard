@@ -1,5 +1,5 @@
 import Products from "./Pages/product/Products";
-import "./app.css";
+import "./App.css";
 import { Toaster } from "react-hot-toast";
 const App = () => {
 	return (
