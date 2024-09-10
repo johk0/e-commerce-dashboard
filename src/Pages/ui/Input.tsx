@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 //
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 const Input = ({ ...rest }: IProps) => {
@@ -20,4 +22,4 @@ const Input = ({ ...rest }: IProps) => {
 	);
 };
 
-export default Input;
+export default memo(Input);

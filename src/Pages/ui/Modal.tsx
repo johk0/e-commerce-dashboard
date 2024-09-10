@@ -16,7 +16,14 @@ import {
 	Transition,
 	TransitionChild,
 } from "@headlessui/react";
-import { useContext, useEffect, useState } from "react";
+import {
+	memo,
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useState,
+} from "react";
 import { v4 as uuid } from "uuid";
 import { categories, formInputs } from "../../data/productsList";
 import Input from "./Input";
@@ -38,14 +45,14 @@ interface Iprops {
 	productToEdit?: IProduct;
 }
 
-export default function MyModal({
+const MyModal: React.FC<Iprops> = ({
 	title,
 	children,
 	isOpen,
 	close,
 	sumbit,
 	productToEdit,
-}: Iprops) {
+}: Iprops) => {
 	const [errors, setErrors] = useState<{ [key: string]: string }>({});
 	const [selectedCatgory, setSelectedCategory] = useState(categories[0]);
 	const [tempColors, setTempColors] = useState<string[]>([]);
@@ -80,25 +87,24 @@ export default function MyModal({
 			setSelectedCategory(productToEdit.category);
 		}
 	}, [productToEdit]);
-	let findErrors = productValidation(product);
+	let findErrors = useMemo(() => productValidation(product), [product]);
 
 	// ____________ Handle input onchange ____________
-	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
-		setProduct({
-			...product,
-			[name]: value,
-		});
+	const onChangeHandler = useCallback(
+		(e: React.ChangeEvent<HTMLInputElement>) => {
+			const { name, value } = e.target;
+			setProduct((prev) => ({ ...prev, [name]: value }));
 
-		const key = name as keyof typeof findErrors;
+			const key = name as keyof typeof findErrors;
 
-		if (findErrors[key] == "") {
-			setErrors({ ...errors, [key]: "" });
-		}
+			if (findErrors[key] == "") {
+				setErrors((prev) => ({ ...prev, [key]: "" }));
+			}
 
-		// setErrors(...errors, { [name]: findErrors[name] });
-	};
-
+			// setErrors(...errors, { [name]: findErrors[name] });
+		},
+		[]
+	);
 	// ____________ render ____________
 
 	const renderFormInputs = formInputs.map((input) => {
@@ -112,9 +118,7 @@ export default function MyModal({
 					id={input.id}
 					name={input.name}
 					value={product[input.name]}
-					onChange={(e) => {
-						onChangeHandler(e);
-					}}
+					onChange={onChangeHandler}
 				/>
 
 				{<ErrorMsg msg={errors[input.name]} />}
@@ -125,24 +129,27 @@ export default function MyModal({
 	});
 
 	// ____________ render cicles ____________
-	const circlesNumber = Infinity;
-	const renderCircles = colors.slice(0, circlesNumber).map((color, index) => {
-		return (
-			<CirclesColor
-				key={index + " - " + color}
-				color={color}
-				onClick={() => {
-					if (tempColors.includes(color)) {
-						setTempColors((prev) => {
-							return prev.filter((c) => c !== color);
-						});
-					} else {
-						setTempColors((prev) => [...prev, color]);
-					}
-				}}
-			/>
-		);
-	});
+	const handleColorClick = useCallback((color: string) => {
+		if (tempColors.includes(color)) {
+			setTempColors((prev) => {
+				return prev.filter((c) => c !== color);
+			});
+		} else {
+			setTempColors((prev) => [...prev, color]);
+		}
+	}, []);
+
+	const renderCircles = useMemo(
+		() =>
+			colors.map((color) => (
+				<CirclesColor
+					key={color}
+					color={color}
+					onClick={() => handleColorClick(color)}
+				/>
+			)),
+		[colors, tempColors, handleColorClick]
+	);
 
 	// ____________ render cicles ____________
 	const renderSelectedCircles = tempColors.map((color, index) => {
@@ -255,4 +262,6 @@ export default function MyModal({
 			</Transition>
 		</>
 	);
-}
+};
+
+export default memo(MyModal);

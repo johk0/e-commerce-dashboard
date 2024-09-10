@@ -4,9 +4,8 @@ import { IProduct } from "../../data/interface";
 import { textSlice } from "../../utilts/functions";
 import { formatNumbers } from "../../utilts/functions";
 import CirclesColor from "../ui/CirclesColor";
-import DeleteModal from "../ui/DeleteModal";
-import { useContext } from "react";
-import ProductsContext from "../../data/ProductsContext";
+import { memo } from "react";
+
 interface IProps {
 	product: IProduct;
 	setProductToEdit: (product: IProduct) => void;
@@ -97,4 +96,4 @@ const ProductCard = ({
 	);
 };
 
-export default ProductCard;
+export default memo(ProductCard);

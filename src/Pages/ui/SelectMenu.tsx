@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import {
 	Label,
 	Listbox,
@@ -18,7 +18,7 @@ function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(" ");
 }
 
-export default function SelectMenu({ selected, setSelected }: IProps) {
+const SelectMenu = ({ selected, setSelected }: IProps) => {
 	// const [selected, setSelected] = useState(categories[0]);
 
 	return (
@@ -96,4 +96,5 @@ export default function SelectMenu({ selected, setSelected }: IProps) {
 			)}
 		</Listbox>
 	);
-}
+};
+export default memo(SelectMenu);

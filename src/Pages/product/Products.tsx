@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import ProductCard from "./ProductCard";
 import Modal from "../ui/Modal";
 import ProductsContext from "../../data/ProductsContext";
@@ -16,10 +16,10 @@ const Products: React.FC<IProps> = () => {
 	const [openDeleteMsg, setOpenDeleteMsg] = useState(false);
 	const [productToDelete, setProductToDelete] = useState<IProduct | null>(null);
 
-	const open = () => setIsOpen(true);
-	const close = () => setIsOpen(false);
-	const openEdit = () => setIsOpenEdit(true);
-	const closeEdit = () => setIsOpenEdit(false);
+	const open = useCallback(() => setIsOpen(true), []);
+	const close = useCallback(() => setIsOpen(false), []);
+	const openEdit = useCallback(() => setIsOpenEdit(true), []);
+	const closeEdit = useCallback(() => setIsOpenEdit(false), []);
 
 	const context = useContext(ProductsContext);
 	if (!context) {
@@ -27,16 +27,18 @@ const Products: React.FC<IProps> = () => {
 	}
 	const allProducts = context.value;
 
+	const handleDeleteProp = useCallback((product: IProduct) => {
+		setProductToDelete(product);
+		setOpenDeleteMsg(true);
+	}, []);
+
 	const renderProducts = allProducts.map((product) => (
 		<ProductCard
 			key={product.id}
 			product={product}
 			setProductToEdit={setProductToEdit}
 			isOpenEdit={openEdit}
-			deleteProduct={(e) => {
-				setProductToDelete(e);
-				setOpenDeleteMsg(true);
-			}}
+			deleteProduct={handleDeleteProp}
 		/>
 	));
 
@@ -44,15 +46,18 @@ const Products: React.FC<IProps> = () => {
 		// console.log("cancel", e);
 	};
 
-	const submit = () => {
+	const submit = useCallback(() => {
 		// console.log("submit from main");
-	};
+	}, []);
 
-	const deleteProduct = (e: IProduct) => {
-		context.setValue(allProducts.filter((product) => product.id !== e.id));
-		setOpenDeleteMsg(false);
-		setProductToDelete(null);
-	};
+	const deleteProduct = useCallback(
+		(e: IProduct) => {
+			context.setValue(allProducts.filter((product) => product.id !== e.id));
+			setOpenDeleteMsg(false);
+			setProductToDelete(null);
+		},
+		[context, allProducts]
+	);
 
 	return (
 		<>
@@ -74,10 +79,13 @@ const Products: React.FC<IProps> = () => {
 									Submit
 								</Button>
 								<Button
-									onClick={(e) => {
-										close();
-										onCancel(e);
-									}}
+									onClick={useCallback(
+										(e: React.MouseEvent<HTMLButtonElement>) => {
+											close();
+											onCancel(e);
+										},
+										[close, onCancel]
+									)}
 									type="button"
 									className="bg-gray-400 hover:bg-gray-500">
 									Cancel
